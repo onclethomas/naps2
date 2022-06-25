@@ -106,6 +106,8 @@ namespace NAPS2.WinForms
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsAbout = new System.Windows.Forms.ToolStripButton();
+            this.tsSavePDFAllAndDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -160,6 +162,7 @@ namespace NAPS2.WinForms
             this.thumbnailList1.AllowDrop = true;
             this.thumbnailList1.ContextMenuStrip = this.contextMenuStrip;
             resources.ApplyResources(this.thumbnailList1, "thumbnailList1");
+            this.thumbnailList1.HideSelection = false;
             this.thumbnailList1.Name = "thumbnailList1";
             this.thumbnailList1.ThumbnailRenderer = null;
             this.thumbnailList1.ThumbnailSize = new System.Drawing.Size(128, 128);
@@ -319,6 +322,8 @@ namespace NAPS2.WinForms
             this.tsSavePDFAll,
             this.tsSavePDFSelected,
             this.toolStripSeparator10,
+            this.tsSavePDFAllAndDelete,
+            this.toolStripSeparator8,
             this.tsPDFSettings});
             this.tsdSavePDF.Image = global::NAPS2.Icons.file_extension_pdf;
             resources.ApplyResources(this.tsdSavePDF, "tsdSavePDF");
@@ -686,6 +691,17 @@ namespace NAPS2.WinForms
             this.tsAbout.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.tsAbout.Click += new System.EventHandler(this.tsAbout_Click);
             // 
+            // tsSavePDFAllAndDelete
+            // 
+            this.tsSavePDFAllAndDelete.Name = "tsSavePDFAllAndDelete";
+            resources.ApplyResources(this.tsSavePDFAllAndDelete, "tsSavePDFAllAndDelete");
+            this.tsSavePDFAllAndDelete.Click += new System.EventHandler(this.tsSavePDFAllAndDelete_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            resources.ApplyResources(this.toolStripSeparator8, "toolStripSeparator8");
+            // 
             // FDesktop
             // 
             resources.ApplyResources(this, "$this");
@@ -779,6 +795,8 @@ namespace NAPS2.WinForms
         private System.Windows.Forms.ToolStripMenuItem tsSharpen;
         private System.Windows.Forms.ToolStripMenuItem tsHueSaturation;
         private System.Windows.Forms.ToolStripMenuItem tsBlackWhite;
+        private System.Windows.Forms.ToolStripMenuItem tsSavePDFAllAndDelete;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
     }
 }
 

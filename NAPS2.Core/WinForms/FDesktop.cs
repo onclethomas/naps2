@@ -691,10 +691,11 @@ namespace NAPS2.WinForms
         private void UpdateToolbar()
         {
             // "All" dropdown items
-            tsSavePDFAll.Text = tsSaveImagesAll.Text = tsEmailPDFAll.Text = tsReverseAll.Text =
+            tsSavePDFAll.Text = tsSaveImagesAll.Text = tsEmailPDFAll.Text = tsReverseAll.Text = 
                 string.Format(MiscResources.AllCount, imageList.Images.Count);
-            tsSavePDFAll.Enabled = tsSaveImagesAll.Enabled = tsEmailPDFAll.Enabled = tsReverseAll.Enabled =
+            tsSavePDFAll.Enabled = tsSaveImagesAll.Enabled = tsEmailPDFAll.Enabled = tsReverseAll.Enabled = tsSavePDFAllAndDelete.Enabled =
                 imageList.Images.Any();
+            tsSavePDFAllAndDelete.Text = $"&All ({imageList.Images.Count}) And Then Clear";
 
             // "Selected" dropdown items
             tsSavePDFSelected.Text = tsSaveImagesSelected.Text = tsEmailPDFSelected.Text = tsReverseSelected.Text =
@@ -789,11 +790,12 @@ namespace NAPS2.WinForms
 
         #region Actions
 
-        private void Clear()
+        private void Clear(bool noConfirmation = false)
         {
             if (imageList.Images.Count > 0)
             {
-                if (MessageBox.Show(string.Format(MiscResources.ConfirmClearItems, imageList.Images.Count), MiscResources.Clear, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                if (noConfirmation
+                    || MessageBox.Show(string.Format(MiscResources.ConfirmClearItems, imageList.Images.Count), MiscResources.Clear, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
                     imageList.Delete(Enumerable.Range(0, imageList.Images.Count));
                     DeleteThumbnails();
@@ -2080,5 +2082,17 @@ namespace NAPS2.WinForms
         }
 
         #endregion
+
+        private void tsSavePDFAllAndDelete_Click(object sender, EventArgs e)
+        {
+            if (appConfigManager.Config.HideSavePdfButton)
+            {
+                return;
+            }
+
+            SavePDF(imageList.Images);
+
+            Clear(true);
+        }
     }
 }
